@@ -1,4 +1,4 @@
-initializationTable<-function()
+initializationTable<-function(startPoints)
 {
   p<-array(list(NULL), 100)
   for(i in 1:100){

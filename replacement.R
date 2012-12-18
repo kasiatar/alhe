@@ -5,20 +5,20 @@ generationalReplacemen<-function(p, o)
 
 eliteReplacement<-function(p, o)
 {
-  maxP<-1
+  minP<-1
   for (i in 2:length(p)){
-    if(p[[maxP]]$quality<p[[i]]$quality){
-      maxP<-i
+    if(p[[i]]$quality<p[[minP]]$quality){
+      minP<-i
     }
   }
-  minO<-1
+  maxO<-1
   for (i in 2:length(o)){
-    if(o[[minO]]$quality>o[[i]]$quality){
-      minO<-i
+    if(o[[i]]$quality>o[[maxO]]$quality){
+      maxO<-i
     }
   }
-  if(p[maxP]>o[minO]){
-    o[minO]<-p[maxP]
+  if(o[[maxO]]$quality>p[[minP]]$quality){
+    o[maxO]<-p[minP]
   }
   return (o)
 }

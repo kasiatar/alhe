@@ -1,9 +1,12 @@
 evolutionaryVariationTable<-function(p, replacement, c = 0.7)
 {
   if(runif(1) < c){
-    return (replacement(p, switchMutation(pmxCrossover(p))))
+    k<-pmxCrossover(p)
   }
   else{
-    return (replacement(p, switchMutation(p)))
+    k<-p
   }
+  m<-switchMutationTable(k)
+  o<-replacement(p, m)
+  return (o)
 }
