@@ -11,12 +11,12 @@ pmxCrossoverTable<-function(p)
 {
   #randomly pick parent 1
   parent1<-p[[sample.int(length(p),1)]]
-  print("parent 1")
-  print(parent1)
+  #print("parent 1")
+  #print(parent1)
   #randomly pick parent 2
   parent2<-p[[sample.int(length(p),1)]]
-  print("parent2")
-  print(parent2)
+  #print("parent2")
+  #print(parent2)
   # randomly pick a swath of 50 alleses from parent 1
   # choose the first position of a swath
   first<-sample.int(100,1)
@@ -25,13 +25,13 @@ pmxCrossoverTable<-function(p)
     last = first+49
   }
   else last=first+49-100
-  print(first)
-  print(last)
+  #print(first)
+  #print(last)
   
   #initialize child
-  print("child")
+  #print("child")
   child<-list(coordinates=array(0, 100), quality=NA)
-  print(child)
+  #print(child)
   
   if(first>last){
     min<-last
@@ -75,14 +75,15 @@ pmxCrossoverTable<-function(p)
     i<-i+1
     
   }
-  print("tempAr")
-  print(tempAr)
+  #print("tempAr")
+  #print(tempAr)
   
   #for each of these values
   for(i in 1:length(tempAr)){
     nextV <- repeatAction(tempAr[[i]], tempAr, indAr, parent1, parent2, child,min, max)
     cnt = 0
     # if the value is a part of the swath
+    
     while((nextV > 0) && (cnt < length(tempAr))){
       nextV<-repeatAction(nextV, tempAr, indAr, parent1, parent2, child, min, max)
       cnt <- cnt+1
@@ -102,20 +103,20 @@ pmxCrossoverTable<-function(p)
     # j<-j+1
     #  }
     # note the index of the value in parent2
-    for(i in 1:100){
-      if(parent2$coordinates[[i]]==-nextV){
+    for(c in 1:100){
+      if(parent2$coordinates[[c]]==-nextV){
         found<-TRUE
-        ind <- i
+        ind <- c
         break
       }
-      i<-i+1
+      c<-c+1
     }
-    print("MAIN the index of the value in parent2")
-    print(ind)
+    #print("MAIN the index of the value in parent2")
+    #print(ind)
     #locate the value2 from parent1 in this same position
     v2<-parent1$coordinates[[ind]]
-    print("MAIN located the value2 from parent1 in this same position")
-    print(v2)
+    #print("MAIN located the value2 from parent1 in this same position")
+    #print(v2)
     #locate the index of the value2 element in parent2; 
     for(j in 1:100){
       if(parent2$coordinates[[j]]==v2){
@@ -124,34 +125,45 @@ pmxCrossoverTable<-function(p)
       }
       j<-j+1
     }
-    print("MAIN the index of the value2 element in parent2")
-    print(ind2) 
+    #print("MAIN the index of the value2 element in parent2")
+    #print(ind2) 
     
-    child$coordinates[[ind2]]<- -nextV
-    print("MAIN copied value")
-    print(-nextV)
-    print("at index")
-    print(ind2) 
+    child$coordinates[[ind2]]<- tempAr[[i]]
+    #print("MAIN copied value")
+    #print(tempAr[[i]])
+    #print("at index")
+    #print(ind2) 
     
     
     i<-i+1
   }
-  print(child)
+  #print(child)
   
   # copy any remaining positions from parent to child
-  for(i in 1:100)
-    if(child$coordinates[[i]]==0){
-      child$coordinates[[i]] <- parent2$coordinates[[i]]
+  for(k in 1:100){
+    if(child$coordinates[[k]]==0){
+      child$coordinates[[k]] <- parent2$coordinates[[k]]
     }
+    k<-k+1
+  }
   
-  print(child)
+  #print(child)
+  for(a in 1:99){
+    for(b in (a+1):100){
+    if(child$coordinates[[a]]==child$coordinates[[b]]){
+      print("NOT GOOD ONE")
+    }
+    b<-b+1
+    }
+    a<-a+1
+  }
   
   return (child)
 }
 
 repeatAction <- function (v, tempAr, indAr, parent1, parent2, child,min, max){
-  print("repeatAction for value")
-  print(v)
+  #print("repeatAction for value")
+  #print(v)
   goOn=NULL
   ind=NULL
   found=FALSE
@@ -164,12 +176,12 @@ repeatAction <- function (v, tempAr, indAr, parent1, parent2, child,min, max){
     }
     i<-i+1
   }
-  print("the index of the value in parent2")
-  print(ind)
+  #print("the index of the value in parent2")
+  #print(ind)
   #locate the value2 from parent1 in this same position
   v2<-parent1$coordinates[[ind]]
-  print("located the value2 from parent1 in this same position")
-  print(v2)
+  #print("located the value2 from parent1 in this same position")
+  #print(v2)
   #locate the index of the value2 element in parent2; 
   for(j in 1:100){
     if(parent2$coordinates[[j]]==v2){
@@ -178,19 +190,19 @@ repeatAction <- function (v, tempAr, indAr, parent1, parent2, child,min, max){
     }
     j<-j+1
   }
-  print("the index of the value2 element in parent2")
-  print(ind2)
+  #print("the index of the value2 element in parent2")
+  #print(ind2)
   #if the index of this value in parent 2 is part of original swath 
   #call repeat using this value
   if((ind2>=min)&&(ind2<=max)){
     goOn <- v2
-    print("is part of original swath")
+    #print("is part of original swath")
     #repeat(index2, tempAr, indAr, parent1, parent2, min, max)
   }
   #if it is not a part of the original swath, insert step A's value
   #into the child in this position
   else{
-    print("is NOT part of original swath")
+    #print("is NOT part of original swath")
     goOn <- -v
   }
   
