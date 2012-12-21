@@ -1,2 +1,1 @@
-p = initializationTable(p)
-o = pmxCrossoverTable(p)
+h<-metaheuristicRun(initializationTable, p, terminationHistory, evaluationTable)

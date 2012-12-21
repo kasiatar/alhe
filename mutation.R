@@ -1,10 +1,8 @@
-switchMutationTable<-function(p)
+switchMutationTable<-function(point)
 {
-  for (i in 1:length(p)){
-    j<-sample.int(length(p[[i]]$coordinates), 2)
-    temp<-p[[i]]$coordinates[j[1]]
-    p[[i]]$coordinates[j[1]]<-p[[i]]$coordinates[j[2]]
-    p[[i]]$coordinates[j[2]]<-temp
-  }
-  return (p)
+  j<-sample.int(length(point$coordinates), 2)
+  temp<-point$coordinates[j[1]]
+  point$coordinates[j[1]]<-point$coordinates[j[2]]
+  point$coordinates[j[2]]<-temp
+  return (point)
 }
