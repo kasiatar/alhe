@@ -91,14 +91,16 @@ metaheuristicRun<-function(initialization, startPoints, termination, evaluation)
   history<-initialization(startPoints)
   history<-evaluateList(history, evaluation)
   model<-initModel(history)
-  print(model$bestPoint$quality)
+  i<-1
+  print(c(i, model$bestPoint$quality))
   while (!termination(history,model))
   {
     aa<-aggregatedOperator(history, model)
     aa$newPoints<-evaluateList(aa$newPoints, evaluation)
     history<-historyPush(history,aa$newPoints)
     model<-aa$newModel
-    print(model$bestPoint$quality)
+    i<-i+1
+    print(c(i, model$bestPoint$quality))
   }
   return(history)
 }
