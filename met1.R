@@ -40,7 +40,7 @@ modelUpdate<-function(selectedPoints, oldModel)
 variation<-function(selectedPoints, model)
 {
   newPoints<-array(list(NULL), length(selectedPoints))
-  pc<-0.0
+  pc<-0.7
   for(i in 1:length(newPoints)){
     if(runif(1) < pc){
       newPoints[[i]]<-pmxCrossoverTable(selectedPoints)
