@@ -21,10 +21,10 @@ pmxCrossoverTable<-function(p)
   # choose the first position of a swath
   first<-sample.int(100,1)
   #calculate the last position of a swath
-  if(first<50){
-    last = first+49
+  if(first<51){
+    last = first+50
   }
-  else last=first+49-100
+  else last=first+50-100
   #print(first)
   #print(last)
   
@@ -78,6 +78,8 @@ pmxCrossoverTable<-function(p)
   #print("tempAr")
   #print(tempAr)
   
+ 
+  if (length(tempAr) > 1){
   #for each of these values
   for(i in 1:length(tempAr)){
     nextV <- repeatAction(tempAr[[i]], tempAr, indAr, parent1, parent2, child,min, max)
@@ -138,7 +140,7 @@ pmxCrossoverTable<-function(p)
     i<-i+1
   }
   #print(child)
-  
+  } 
   # copy any remaining positions from parent to child
   for(k in 1:100){
     if(child$coordinates[[k]]==0){
@@ -159,10 +161,12 @@ pmxCrossoverTable<-function(p)
   }
   
   return (child)
+
 }
+  
 
 repeatAction <- function (v, tempAr, indAr, parent1, parent2, child,min, max){
-  #print("repeatAction for value")
+  # print("repeatAction for value")
   #print(v)
   goOn=NULL
   ind=NULL

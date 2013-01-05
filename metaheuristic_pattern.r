@@ -59,7 +59,7 @@ aggregatedOperator<-function(history, oldModel)
 #a termination condition, an initialization procedure
 #and an evaluation procedure.
 #The result is the history of the run
-metaheuristicRun<-function(initialization, startPoints, termination, evaluation)
+metaheuristicRun<-function(initialization, startPoints, termination)
 {
    history<-initialization(startPoints)
    history<-evaluateList(history)
@@ -96,5 +96,17 @@ evaluateList<-function(points,evaluation)
   return (points) 
 }
 
+evaluation<-function(coordinates)
+{
+  quality<-0
+  for(i in 1:length(coordinates)-1){
+    for(j in (i+1):length(coordinates)){
+      if(coordinates[[i]] > coordinates[[j]]){
+        quality<-quality+1
+      }
+    }
+  }
+  return (quality)
+}
 
 ####  THAT'S ALL FOLKS
