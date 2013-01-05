@@ -22,9 +22,9 @@ pmxCrossoverTable<-function(p)
   first<-sample.int(100,1)
   #calculate the last position of a swath
   if(first<51){
-    last = first+50
+    last = first+49
   }
-  else last=first+50-100
+  else last=first+49-99
   #print(first)
   #print(last)
   
@@ -79,7 +79,7 @@ pmxCrossoverTable<-function(p)
   #print(tempAr)
   
  
-  if (length(tempAr) > 1){
+  if (count != 1) {
   #for each of these values
   for(i in 1:length(tempAr)){
     nextV <- repeatAction(tempAr[[i]], tempAr, indAr, parent1, parent2, child,min, max)
@@ -105,6 +105,7 @@ pmxCrossoverTable<-function(p)
     # j<-j+1
     #  }
     # note the index of the value in parent2
+    ind=0
     for(c in 1:100){
       if(parent2$coordinates[[c]]==-nextV){
         found<-TRUE
@@ -116,6 +117,8 @@ pmxCrossoverTable<-function(p)
     #print("MAIN the index of the value in parent2")
     #print(ind)
     #locate the value2 from parent1 in this same position
+    if(ind != 0) {
+    
     v2<-parent1$coordinates[[ind]]
     #print("MAIN located the value2 from parent1 in this same position")
     #print(v2)
@@ -138,6 +141,7 @@ pmxCrossoverTable<-function(p)
     
     
     i<-i+1
+    }
   }
   #print(child)
   } 
@@ -153,11 +157,28 @@ pmxCrossoverTable<-function(p)
   for(a in 1:99){
     for(b in (a+1):100){
     if(child$coordinates[[a]]==child$coordinates[[b]]){
-      print("NOT GOOD ONE")
+      #print(child)
+      #search for missing value
+      for(e in 1:100){
+        ind3 = 0
+        for(d in 1:100){
+          if(child$coordinates[[d]]==e){
+            ind3 = d}
+        }
+          
+        if(ind3 == 0){
+          # print(e)
+            child$coordinates[[a]] <- e
+          }
+      
+      }
+ 
+      # print("NOT GOOD ONE")
+      
     }
-    b<-b+1
+    #b<-b+1
     }
-    a<-a+1
+    #a<-a+1
   }
   
   return (child)
@@ -169,13 +190,13 @@ repeatAction <- function (v, tempAr, indAr, parent1, parent2, child,min, max){
   # print("repeatAction for value")
   #print(v)
   goOn=NULL
-  ind=NULL
+  ind4=NULL
   found=FALSE
   # note the index of the value in parent2
   for(i in 1:100){
     if(parent2$coordinates[[i]]==v){
       found<-TRUE
-      ind <- i
+      ind4 <- i
       break
     }
     i<-i+1
@@ -183,7 +204,7 @@ repeatAction <- function (v, tempAr, indAr, parent1, parent2, child,min, max){
   #print("the index of the value in parent2")
   #print(ind)
   #locate the value2 from parent1 in this same position
-  v2<-parent1$coordinates[[ind]]
+  v2<-parent1$coordinates[[ind4]]
   #print("located the value2 from parent1 in this same position")
   #print(v2)
   #locate the index of the value2 element in parent2; 
