@@ -40,7 +40,7 @@ modelUpdate<-function(selectedPoints, oldModel)
 variation<-function(selectedPoints, model)
 {
   newPoints<-array(list(NULL), length(selectedPoints))
-  pc<-0.7
+  pc<-0.0
   for(i in 1:length(newPoints)){
     if(runif(1) < pc){
       newPoints[[i]]<-pmxCrossoverTable(selectedPoints)
@@ -92,7 +92,6 @@ metaheuristicRun<-function(initialization, startPoints, termination, evaluation)
   history<-evaluateList(history, evaluation)
   model<-initModel(history)
   i<-1
-  print(c(i, model$bestPoint$quality))
   while (!termination(history,model))
   {
     aa<-aggregatedOperator(history, model)
@@ -100,7 +99,6 @@ metaheuristicRun<-function(initialization, startPoints, termination, evaluation)
     history<-historyPush(history,aa$newPoints)
     model<-aa$newModel
     i<-i+1
-    print(c(i, model$bestPoint$quality))
   }
   return(history)
 }
