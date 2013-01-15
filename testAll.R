@@ -8,3 +8,14 @@ testAll<-function(){
   }
   return (results)
 }
+
+testAll2<-function(){
+  results<-array(-1, 20)
+  for(i in 1:20){
+    tempHistory<-metaheuristicRun2(initializationTable, p1, terminationHistory, evaluationTableRsk)
+    quality<-bestQualityMax(tempHistory)
+    results[[i]]<-quality
+    print(quality)
+  }
+  return (results)
+}
