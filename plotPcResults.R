@@ -26,9 +26,18 @@ lines(p1s5pc10resultsDistribution, col="green")
 
 
 #PROBLEM PLECAKOWY
+# p1w, w1u
 plot(0,0, xlim=c(220,290), ylim=c(0.0, 1.0), type="n", main="Dystrybuanty parametru turnieju s=2", xlab="wartość funkcji celu dla problemu plecakowego", ylab="prawdopodobieństwo")
 lines(prt2pc00Distribution, col="blue")
 lines(prt2pc02Distribution, col="violet")
 lines(prt2pc04Distribution, col="red")
 lines(prt2pc07Distribution, col="yellow")
 lines(prt2pc10Distribution, col="green")
+
+# p1w, w1w
+plot(0,0, xlim=c(160,195), ylim=c(0.0, 1.0), type="n", main="Dystrybuanty parametr turnieju s=2", xlab="wartość funkcji celu dla problemu plecakowego p1w, w1w", ylab="prawdopodobieństwo")
+lines(prWt2pc00Distribution, col="blue")
+lines(prWt2pc02Distribution, col="violet")
+lines(prWt2pc04Distribution, col="red")
+lines(prWt2pc07Distribution, col="yellow")
+lines(prWt2pc10Distribution, col="green")
