@@ -28,7 +28,7 @@ modelUpdate<-function(selectedPoints, oldModel)
 {
   newModel<-oldModel
   for(i in 1:length(selectedPoints)){
-    if(selectedPoints[[i]]$quality<newModel$bestPoint$quality){
+    if(selectedPoints[[i]]$quality>newModel$bestPoint$quality){
       newModel$bestPoint<-selectedPoints[[i]]
     }
   }
@@ -60,7 +60,7 @@ initModel<-function(history)
 {
   model<-list(bestPoint=history[[1]])
   for(i in 2:length(history)){
-    if(history[[i]]$quality<model$bestPoint$quality){
+    if(history[[i]]$quality>model$bestPoint$quality){
       model$bestPoint<-history[[i]]
     }
   }
