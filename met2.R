@@ -24,7 +24,7 @@ selection<-function(history, model)
 
 #update of a model based on a LIST of points
 #to be defined
-modelUpdate<-function(selectedPoints, oldModel)
+modelUpdate2<-function(selectedPoints, oldModel)
 {
   newModel<-oldModel
   for(i in 1:length(selectedPoints)){
@@ -40,7 +40,7 @@ modelUpdate<-function(selectedPoints, oldModel)
 variation<-function(selectedPoints, model)
 {
   newPoints<-array(list(NULL), length(selectedPoints))
-  pc<-0.0
+  pc<-0.4
   for(i in 1:length(newPoints)){
     if(runif(1) < pc){
       newPoints[[i]]<-pmxCrossoverTable(selectedPoints)
@@ -56,7 +56,7 @@ variation<-function(selectedPoints, model)
 
 #initializes model based on history
 # returns model
-initModel<-function(history)
+initModel2<-function(history)
 {
   model<-list(bestPoint=history[[1]])
   for(i in 2:length(history)){
@@ -76,7 +76,7 @@ aggregatedOperator<-function(history, oldModel)
 {
   
   selectedPoints<-selection(history, oldModel)
-  newModel<-modelUpdate(selectedPoints, oldModel)
+  newModel<-modelUpdate2(selectedPoints, oldModel)
   newPoints<-variation(selectedPoints, newModel)
   return (list(newPoints=newPoints,newModel=newModel))
 }
@@ -90,7 +90,7 @@ metaheuristicRun2<-function(initialization, startPoints, termination, evaluation
 {
   history<-initialization(startPoints)
   history<-evaluateList2(history, evaluation)
-  model<-initModel(history)
+  model<-initModel2(history)
   i<-1
   while (!termination(history,model))
   {
