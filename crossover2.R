@@ -45,9 +45,6 @@ pmxCrossoverTable2<-function(p)
     min<-first
     max<-last}
   
-  print(min)
-  print(max)
-  
   #copy directly into child
   for(i in min:max){
     child$coordinates[[i]]<-parent1$coordinates[[i]]
