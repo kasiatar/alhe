@@ -10,13 +10,11 @@
 pmxCrossoverTable2<-function(p)
 {
   #randomly pick parent 1
-  #parent1<-p[[sample.int(length(p),1)]]
-  parent1<-p[[1]]
+  parent1<-p[[sample.int(length(p),1)]]
   #print("parent 1")
   #print(parent1)
   #randomly pick parent 2
-  #parent2<-p[[sample.int(length(p),1)]]
-  parent2<-p[[2]]
+  parent2<-p[[sample.int(length(p),1)]]
   #print("parent2")
   #print(parent2)
   tableLength<-length(parent1$coordinates)
