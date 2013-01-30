@@ -36,3 +36,12 @@ initializationTable3<-function(startPoints)
   }
   return (p)
 }
+
+initializationPopulation<-function(startPoints)
+{
+  p<-array(list(NULL), startPoints$populationLength)
+  for(i in 1:(startPoints$populationLength)){
+    p[[i]]<-list(coordinates=sample.int(startPoints$arrayLength, startPoints$arrayLength), quality=NA)
+  }
+  return (p)
+}

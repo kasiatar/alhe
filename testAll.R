@@ -10,15 +10,20 @@ testAll<-function(){
 }
 
 testAll2<-function(){
-  results<-array(-1, 25)
+  results<-array(list(NULL), 25)
+  
+  startPoints<-list(populationLength=100, arrayLength=100)
+  
   for(i in 1:25){
     set.seed(primes[[1]][[i]])
-    p2<-initializationTable1()
-    tempHistory<-metaheuristicRun2(initializationTable, p2, terminationHistory, evaluationTableRsk)
-    #print(length(p2))
-    quality<-bestQualityMax(tempHistory)
-    results[[i]]<-quality
-    print(quality)
+    
+    tempHistory<-metaheuristicRun2(initializationPopulation, startPoints, terminationHistory, evaluationTableRsk)
+
+    results[[i]]<-tempHistory
+    
+    bestQ<-bestQualityMax(tempHistory)
+    
+    print(bestQ)
   }
   return (results)
 }
