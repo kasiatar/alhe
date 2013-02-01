@@ -19,7 +19,7 @@ testAll2<-function(){
     
     tempHistory<-metaheuristicRun2(initializationPopulation, startPoints, terminationHistory, evaluationTableRsk)
 
-    results[[i]]<-tempHistory
+    results[[i]]<-qualitiesFromHistory(tempHistory)
     
     bestQ<-bestQualityMax(tempHistory)
     
