@@ -17,7 +17,7 @@
 #to be defined
 selection<-function(history, model)
 {
-  selectedPoints<-c(historyPop(history, 249), list(model$bestPoint))
+  selectedPoints<-c(historyPop(history, 99), list(model$bestPoint))
   selectedPoints<-tournamentSelection2(selectedPoints)
   return(selectedPoints)
 }
