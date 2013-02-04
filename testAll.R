@@ -12,7 +12,7 @@ testAll<-function(){
 testAll2<-function(){
   results<-array(list(NULL), 25)
   
-  startPoints<-list(populationLength=100, arrayLength=100)
+  startPoints<-list(populationLength=500, arrayLength=500)
   
   for(i in 1:25){
     set.seed(primes[[1]][[i]])
