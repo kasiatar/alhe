@@ -7,10 +7,10 @@
 #the remaining alleles are copied direct from parent 2.
 
 
-pmxCrossoverTable2<-function(p)
+pmxCrossoverTable2<-function(p, parentIndex)
 {
   
-  parent1<-p[[sample.int(length(p),1)]]
+  parent1<-p[[parentIndex]]
   parent2<-p[[sample.int(length(p),1)]]
   tableLength<-length(parent1$coordinates)
   min<-sample.int(tableLength,1)

@@ -18,7 +18,7 @@
 selection<-function(history, model)
 {
   selectedPoints<-c(historyPop(history, 99), list(model$bestPoint))
-  selectedPoints<-tournamentSelection2(selectedPoints)
+  selectedPoints<-tournamentSelection2(selectedPoints, 5)
   return(selectedPoints)
 }
 
@@ -40,12 +40,10 @@ modelUpdate2<-function(selectedPoints, oldModel)
 variation<-function(selectedPoints, model)
 {
   newPoints<-array(list(NULL), length(selectedPoints))
-  pc<-0.2
-  #print(length(selectedPoints))
+  pc<-2.0
   for(i in 1:length(newPoints)){
     if(runif(1) <= pc){
-      newPoints[[i]]<-pmxCrossoverTable2(selectedPoints)
-      print(newPoints)
+      newPoints[[i]]<-pmxCrossoverTable2(selectedPoints, i)
     }
     else{
       newPoints[[i]]<-selectedPoints[[i]]
@@ -90,7 +88,6 @@ aggregatedOperator<-function(history, oldModel)
 #The result is the history of the run
 metaheuristicRun2<-function(initialization, startPoints, termination, evaluation)
 {
-  #print(length(startPoints))
   history<-initialization(startPoints)
   history<-evaluateList2(history, evaluation)
   model<-initModel2(history)
@@ -124,7 +121,7 @@ historyPop<-function(history, number)
 evaluateList2<-function(points,evaluation)
 {
   for (i in 1:length(points)){
-    points[[i]]$quality<-evaluation(points[[i]]$coordinates, p2w, w2u)
+    points[[i]]$quality<-evaluation(points[[i]]$coordinates, p1w, w1w)
   }
   return (points) 
 }
